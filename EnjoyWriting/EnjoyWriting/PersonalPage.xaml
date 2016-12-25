@@ -1,0 +1,87 @@
+﻿<Page
+    x:Class="EnjoyWriting.PersonalPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EnjoyWriting"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid x:Name="grid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <StackPanel>
+            <StackPanel.Resources>
+                <Storyboard x:Name="pageLoad">
+                    <DoubleAnimation Storyboard.TargetName="grid" Storyboard.TargetProperty="Opacity" From="0.0" To="1.0" Duration="0:0:4" />
+                    <DoubleAnimation Storyboard.TargetName="themeTransform" Storyboard.TargetProperty="TranslateY" From="1000" To="1" Duration="0:0:2" />
+
+                </Storyboard>
+                <Storyboard x:Name="changepassword">
+                    <DoubleAnimation Storyboard.TargetName="changePasswordPanel" Storyboard.TargetProperty="Opacity" From="0.0" To="1.0" Duration="0:0:1" />
+                    <DoubleAnimation Storyboard.TargetName="beforeChangePanel" Storyboard.TargetProperty="Opacity" From="1.0" To="0.0" Duration="0:0:1" />
+                    <DoubleAnimation Storyboard.TargetName="changePasswordTransform" Storyboard.TargetProperty="TranslateY" From="200" To="1" Duration="0:0:1" />
+
+                </Storyboard>
+
+                <Storyboard x:Name="afterChangepassword">
+                    <DoubleAnimation Storyboard.TargetName="changePasswordPanel" Storyboard.TargetProperty="Opacity" From="1.0" To="0.0" Duration="0:0:1" />
+                    <DoubleAnimation Storyboard.TargetName="beforeChangePanel" Storyboard.TargetProperty="Opacity" From="0.0" To="1.0" Duration="0:0:1" />
+                    <DoubleAnimation Storyboard.TargetName="changePasswordTransform" Storyboard.TargetProperty="TranslateY" From="1" To="300" Duration="0:0:1" />
+                </Storyboard>
+
+                <Storyboard x:Name="exitStoryboard">
+                    <DoubleAnimation Storyboard.TargetName="exit" Storyboard.TargetProperty="Opacity" From="1.0" To="0.0" Duration="0:0:0.2" />
+                    <DoubleAnimation Storyboard.TargetName="exitAnXia" Storyboard.TargetProperty="Opacity" From="0.0" To="1.0" Duration="0:0:0.2" />
+                </Storyboard>
+            </StackPanel.Resources>
+        </StackPanel>
+
+        <Image Margin="-100" Source="Assets/1.png"/>
+        <StackPanel x:Name="beforeChangePanel" Margin="300,100,300,200">
+            <Ellipse Height="150" Margin="306,0,0,0" Stroke="Black" Width="150" HorizontalAlignment="Left">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="Assets/doge.jpg"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <StackPanel HorizontalAlignment="Left" Height="50" Margin="136,0,0,0" Width="512" Orientation="Horizontal"/>
+            <StackPanel HorizontalAlignment="Left" Height="82" Margin="274,0,0,0" Width="306" Orientation="Horizontal">
+                <TextBlock Height="30" Margin="0,10,0,0" TextWrapping="Wrap" Text="用户名" VerticalAlignment="Top" Width="130" FontSize="24"/>
+                <TextBlock x:Name="t1" Height="30" Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" FontSize="24" Text="郑勇俊"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" Height="112" VerticalAlignment="Top" Width="306" Margin="274,0,0,0" Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Left" Margin="0,21,0,32" TextWrapping="Wrap" Text="最高分" Width="130" FontSize="24"/>
+                <TextBlock x:Name="t2" Height="30" Margin="0,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" FontSize="24" Text="3196"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" Height="62" Margin="306,0,0,0" Width="150">
+                <Button x:Name="beforeButton" Content="修改密码" HorizontalAlignment="Left" Height="54" Margin="10,0,0,0" Width="130" FontSize="24" Click="beforeButton_Click"/>
+            </StackPanel>
+        </StackPanel>
+        <Image HorizontalAlignment="Left" Height="138" Margin="35,2,0,0" VerticalAlignment="Top" Width="285" Source="Assets/5.png" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <CompositeTransform x:Name="themeTransform" TranslateX="1" TranslateY="1"/>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="exitAnXia" HorizontalAlignment="Left" Height="114" Margin="1158,30,0,0" VerticalAlignment="Top" Width="187" Source="Assets/7按下.png" Opacity="0"/>
+        <Image x:Name="exit" HorizontalAlignment="Left" Height="114" Margin="1160,28,0,0" VerticalAlignment="Top" Width="187" Source="Assets/7.png" PointerPressed="exit_PointerPressed" PointerReleased="exit_PointerReleased"/>
+        <StackPanel x:Name="changePasswordPanel" Margin="300,250,300,200" RenderTransformOrigin="0.5,0.5" Opacity="0">
+            <StackPanel.RenderTransform>
+                <CompositeTransform x:Name="changePasswordTransform" TranslateX="1" TranslateY="-500"/>
+            </StackPanel.RenderTransform>
+            <StackPanel HorizontalAlignment="Left" Height="50" Margin="274,0,0,0" Width="306" Orientation="Horizontal">
+                <TextBlock x:Name="output" Height="30" Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="362" FontSize="24" Foreground="Red"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" Height="82" Margin="274,0,0,0" Width="306" Orientation="Horizontal">
+                <TextBlock Height="30" Margin="0,10,0,0" TextWrapping="Wrap" Text="原密码：" VerticalAlignment="Top" Width="130" FontSize="24"/>
+                <PasswordBox x:Name="oldPassword" Margin="0,12,0,38" Width="193"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" Height="112" VerticalAlignment="Top" Width="306" Margin="274,0,0,0" Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Left" Margin="0,21,0,64" TextWrapping="Wrap" Text="新密码：" Width="130" FontSize="24"/>
+                <PasswordBox x:Name="NewPassword" Margin="0,20,0,60" Width="193"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" Height="62" Margin="306,0,0,0" Width="150">
+                <Button x:Name="afterbutton" Content="确认修改" HorizontalAlignment="Left" Height="54" Margin="10,0,0,0" Width="130" FontSize="24" Click="afterbutton_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Page>

@@ -1,0 +1,104 @@
+﻿<Page
+    x:Class="EnjoyWriting.XiuXianModePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EnjoyWriting"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Canvas x:Name="background" Height="766" VerticalAlignment="Bottom">
+        <Canvas.Resources>
+            <Storyboard x:Name="middleflash">
+                <DoubleAnimation Storyboard.TargetName="MiddleCanvas" Storyboard.TargetProperty="Opacity" From="0" To="0.75" Duration="0:0:1"/>
+            </Storyboard>
+
+            <Storyboard x:Name="middleflashaway">
+                <DoubleAnimation Storyboard.TargetName="MiddleCanvas" Storyboard.TargetProperty="Opacity" From="0.75" To="0" Duration="0:0:1"/>
+                <DoubleAnimation Storyboard.TargetName="middle" Storyboard.TargetProperty="TranslateY" From="0" To="768" BeginTime="0:0:1"/>
+            </Storyboard>
+
+            <Storyboard x:Name="chuxian1">
+                <DoubleAnimation Storyboard.TargetName="wujiaoxinfill_3" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" BeginTime="0:0:1"/>
+            </Storyboard>
+            <Storyboard x:Name="chuxian2">
+                <DoubleAnimation Storyboard.TargetName="wujiaoxinfill_2" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" BeginTime="0:0:1"/>
+            </Storyboard>
+            <Storyboard x:Name="chuxian3">
+                <DoubleAnimation Storyboard.TargetName="wujiaoxinfill_1" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" BeginTime="0:0:1"/>
+            </Storyboard>
+
+            <Storyboard x:Name="fanhuiStoryboard">
+                <DoubleAnimation Storyboard.TargetName="fanhui1" Storyboard.TargetProperty="Opacity" From="1.0" To="0.0" Duration="0:0:0.2" />
+                <DoubleAnimation Storyboard.TargetName="fanhui2" Storyboard.TargetProperty="Opacity" From="0.0" To="1.0" Duration="0:0:0.2" />
+            </Storyboard>
+
+            <Storyboard x:Name="leftflash">
+                <DoubleAnimation Storyboard.TargetName="leftblack" Storyboard.TargetProperty="TranslateX" From="-480" To="0" Duration="0:0:0.5"/>
+            </Storyboard>
+            <Storyboard x:Name="leftflashbcak">
+                <DoubleAnimation Storyboard.TargetName="leftblack" Storyboard.TargetProperty="TranslateX" From="0" To="-480" Duration="0:0:0.5"/>
+            </Storyboard>
+            <Storyboard x:Name="jianbian">
+                <DoubleAnimation Storyboard.TargetName="background" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5"/>
+            </Storyboard>
+        </Canvas.Resources>
+        <Canvas.Background>
+            <ImageBrush Stretch="Fill" ImageSource="Assets/a1.jpg"/>
+        </Canvas.Background>
+        <Canvas x:Name="MainCanvas" Canvas.Left="700" Canvas.Top="100" Height="500" Width="500" PointerMoved="canvaspointmove" PointerPressed="canvaspointpress" PointerReleased="canvaspointrelease">
+            <Canvas.Background>
+                <ImageBrush Stretch="Fill"/>
+            </Canvas.Background>
+            <Image x:Name="myImage" Source=""/>
+            <Canvas x:Name="DrawCanvas" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  />
+        </Canvas>
+        <Canvas x:Name="LeftCanvas" Width="527" Tapped="tp" PointerMoved="leftpm" PointerPressed="leftpp">
+            <Canvas.RenderTransform>
+                <CompositeTransform x:Name="leftblack" TranslateX="-480"/>
+            </Canvas.RenderTransform>
+            <Image x:Name="black" Height="768" Width="500" Source="Assets/black.png" Stretch="Fill" Opacity="0.3" RenderTransformOrigin="0.5,0.5">
+            </Image>
+            <Image x:Name="queren1" Height="72" Canvas.Left="176" Canvas.Top="358" Width="144" Source="Assets/确认.png"/>
+            <Image x:Name="queren2" Height="91" Canvas.Left="177" Canvas.Top="352" Width="158" Source="Assets/确认按下.png" Opacity="0" PointerPressed="querenpp" PointerReleased="querenpr"/>
+            <Image x:Name="tuodong1" Height="224" Canvas.Left="161" Canvas.Top="144" Width="326" Source="Assets/拖动条1.png" PointerPressed="tudong2_PointerPressed" PointerReleased="tudong2_PointerR" PointerMoved="tudong2_PointerM"/>
+
+            <Image x:Name="chonghui1" Height="66" Canvas.Left="359" Canvas.Top="366" Width="118" Source="Assets/重绘.png" />
+            <Image x:Name="chonghui2" Height="82" Canvas.Left="327" Canvas.Top="361" Width="176" Source="Assets/重绘按下.png" PointerPressed="chonghuipp" PointerReleased="chonghuipr" Opacity="0"/>
+            <Image x:Name="fanhui2" Height="104" Canvas.Left="6" Canvas.Top="678" Width="174" Source="Assets/返回按下.png"  Opacity="0"/>
+            <Image x:Name="fanhui1" Height="72" Canvas.Left="6" Canvas.Top="688" Width="144" Source="Assets/返回.png" PointerPressed="fanhui_PointerPressed" PointerReleased="fanhui_PointerReleased"/>
+
+            <Image x:Name="music1" Height="97" Canvas.Left="341" Canvas.Top="455" Width="150" Source="Assets/music.png" Opacity="0.8"/>
+            <Image x:Name="music2" Height="97" Canvas.Left="341" Canvas.Top="455" Width="150" Source="Assets/nomusic.png" Opacity="0" Tapped="musictap"/>
+
+        </Canvas>
+        <MediaElement x:Name="media1" Height="24" Canvas.Left="676" Canvas.Top="718" Width="145"  MediaEnded="musicend" Source="Assets/平凡之路 - 朴树.mp3"/>
+
+        <Canvas x:Name="MiddleCanvas" Width="1366" Height="768">
+            <Image x:Name="MiddleImage" Width="1366" Height="768" Source="Assets/backblack.png" Stretch="Fill"/>
+            <Image x:Name="baocun1" Height="97" Canvas.Left="501" Canvas.Top="555" Width="150" Source="Assets/save.png" />
+            <Image x:Name="baocun2" Height="108" Canvas.Left="503" Canvas.Top="544" Width="154" Source="Assets/save按下.png" Opacity="0" PointerPressed="baocunpp" PointerReleased="baocunpr"/>
+
+            <Image x:Name="queren3" Height="72" Canvas.Left="716" Canvas.Top="558" Width="144" Source="Assets/确认.png"/>
+            <Image x:Name="queren4" Height="91" Canvas.Left="717" Canvas.Top="552" Width="158" Source="Assets/确认按下.png" Opacity="0" PointerPressed="queren2pp" PointerReleased="queren2pr" />
+
+            <Image x:Name="wujiaoxin_1" Height="220" Canvas.Left="436" Canvas.Top="188" Width="220" Opacity="1" Source="Assets/左空.png" />
+            <Image x:Name="wujiaoxinfill_1" Height="220" Canvas.Left="436" Canvas.Top="158" Width="220" Opacity="0" Source="Assets/左实.png" />
+
+            <Image x:Name="wujiaoxin_2" Height="220" Canvas.Left="585" Canvas.Top="218" Width="220" Opacity="1" Source="Assets/中空.png"  />
+            <Image x:Name="wujiaoxinfill_2" Height="200" Canvas.Left="595" Canvas.Top="228" Width="200" Opacity="0" Source="Assets/中实.png"  />
+
+            <Image x:Name="wujiaoxin_3" Height="220" Canvas.Left="726" Canvas.Top="165" Width="220" Opacity="1" Source="Assets/右空.png" />
+            <Image x:Name="wujiaoxinfill_3" Height="220" Canvas.Left="722" Canvas.Top="170" Width="220" Opacity="0" Source="Assets/右实.png" />
+
+            <Image x:Name="success" Height="220" Canvas.Left="436" Canvas.Top="185" Width="510" Source="Assets/Word1.png" Opacity="0"/>
+            <TextBlock x:Name="gongxi" Height="25" Canvas.Left="507" TextWrapping="Wrap" Canvas.Top="406" Width="359" Text="恭喜你获得了69分,当前总得分为2333" FontSize="20" TextAlignment="Center" FontFamily="幼圆"/>
+            <TextBlock x:Name="shibai" Height="109" Canvas.Left="436" TextWrapping="Wrap" Text="闯关失败" Canvas.Top="233" Width="506" FontSize="100" TextAlignment="Center" Opacity="0" FontFamily="幼圆"/>
+
+            <Canvas.RenderTransform>
+                <CompositeTransform x:Name="middle" TranslateY="768"/>
+            </Canvas.RenderTransform>
+
+        </Canvas>
+    </Canvas>
+</Page>
